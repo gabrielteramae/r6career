@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R6Career</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">R6<span>Career</span></div>
+        <ul>
+            <li><a href="#">Buscar</a></li>
+            <li><a href="#">Operadores</a></li>
+            <li><a href="#">Leaderboard</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <p class="hero-label">Rainbow Six Siege · Stats Tracker</p>
+            <h1><span class="outline">Sua</span><br>Carreira</h1>
+            <p class="hero-desc">Rank, K/D, operadores e histórico completo. Qualquer jogador, qualquer plataforma.</p>
+            <div class="search-box">
+                <input type="text" placeholder="Username do jogador..." id="searchInput" />
+                <select id="platform">
+                    <option value="pc">PC</option>
+                    <option value="psn">PlayStation</option>
+                    <option value="xbl">Xbox</option>
+                </select>
+                <button onclick="buscar()">Buscar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <div class="tag reveal">Buscas recentes</div>
+        <div class="players-grid">
+            <a href="#" class="player-card reveal">
+                <div class="card-top">
+                    <div class="avatar">GTC</div>
+                    <div class="rank-tag">Diamante IV</div>
+                </div>
+                <div class="card-name">GabrielTeramae</div>
+                <div class="card-plat">PC · Uplay</div>
+                <div class="card-stats">
+                    <div><span class="stat-val">1.84</span><span class="stat-key">K/D</span></div>
+                    <div><span class="stat-val">62%</span><span class="stat-key">Win</span></div>
+                    <div><span class="stat-val">48%</span><span class="stat-key">HS</span></div>
+                </div>
+            </a>
+            <a href="#" class="player-card reveal">
+                <div class="card-top">
+                    <div class="avatar">PRO</div>
+                    <div class="rank-tag">Campeão</div>
+                </div>
+                <div class="card-name">ProPlayer_BR</div>
+                <div class="card-plat">PC · Uplay</div>
+                <div class="card-stats">
+                    <div><span class="stat-val">3.21</span><span class="stat-key">K/D</span></div>
+                    <div><span class="stat-val">74%</span><span class="stat-key">Win</span></div>
+                    <div><span class="stat-val">61%</span><span class="stat-key">HS</span></div>
+                </div>
+            </a>
+            <a href="#" class="player-card reveal">
+                <div class="card-top">
+                    <div class="avatar">SNP</div>
+                    <div class="rank-tag">Platina II</div>
+                </div>
+                <div class="card-name">SniperKing99</div>
+                <div class="card-plat">PlayStation</div>
+                <div class="card-stats">
+                    <div><span class="stat-val">1.42</span><span class="stat-key">K/D</span></div>
+                    <div><span class="stat-val">55%</span><span class="stat-key">Win</span></div>
+                    <div><span class="stat-val">52%</span><span class="stat-key">HS</span></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="wrap divider">
+        <div class="tag reveal">Operadores</div>
+        <h2 class="reveal">Seu desempenho<br>por operador</h2>
+        <p class="desc reveal">Stats detalhadas de cada operador que você joga.</p>
+        <div class="ops-grid">
+            <div class="op-card op-jager reveal">
+                <div class="op-bg">
+                    <div class="op-initial">JÄG</div>
+                </div>
+                <img src="images/imagens/imagens.png/jager.png" alt="Jäger" />
+                <div class="op-info">
+                    <div class="op-role">Defesa</div>
+                    <div class="op-name">Jäger</div>
+                    <div class="op-kd">K/D 2.14</div>
+                </div>
+            </div>
+            <div class="op-card op-ash reveal">
+                <div class="op-bg">
+                    <div class="op-initial">ASH</div>
+                </div>
+                <img src="images/imagens/imagens.png/ash.png" alt="Ash" />
+                <div class="op-info">
+                    <div class="op-role">Ataque</div>
+                    <div class="op-name">Ash</div>
+                    <div class="op-kd">K/D 1.92</div>
+                </div>
+            </div>
+            <div class="op-card op-cav reveal">
+                <div class="op-bg">
+                    <div class="op-initial">CAV</div>
+                </div>
+                <img src="images/imagens/imagens.png/caveira.png" alt="Caveira" />
+                <div class="op-info">
+                    <div class="op-role">Defesa</div>
+                    <div class="op-name">Caveira</div>
+                    <div class="op-kd">K/D 1.76</div>
+                </div>
+            </div>
+            <div class="op-card op-hibana reveal">
+                <div class="op-bg">
+                    <div class="op-initial">HIB</div>
+                </div>
+                <img src="images/imagens/imagens.png/hibana.png" alt="Hibana" />
+                <div class="op-info">
+                    <div class="op-role">Ataque</div>
+                    <div class="op-name">Hibana</div>
+                    <div class="op-kd">K/D 1.55</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap divider">
+        <div class="tag reveal">Mapas</div>
+        <h2 class="reveal">Stats por mapa</h2>
+        <p class="desc reveal">Veja onde você performa melhor e onde precisa melhorar.</p>
+        <div class="maps-grid">
+            <div class="map-card map-oregon reveal">
+                <img src="images/imagens/imagens.jpg/oregon.jpg" alt="Oregon" />
+                <div class="map-pattern"></div>
+                <div class="map-info">
+                    <div class="map-name">Oregon</div>
+                    <div class="map-stat">Win rate 68%</div>
+                </div>
+            </div>
+            <div class="map-card map-club reveal">
+                <img src="images/imagens/imagens.jpg/clubhouse.jpg" alt="Clubhouse" />
+                <div class="map-pattern"></div>
+                <div class="map-info">
+                    <div class="map-name">Clubhouse</div>
+                    <div class="map-stat">Win rate 61%</div>
+                </div>
+            </div>
+            <div class="map-card map-coast reveal">
+                <img src="images/imagens/imagens.jpg/coastline.jpg" alt="Coastline" />
+                <div class="map-pattern"></div>
+                <div class="map-info">
+                    <div class="map-name">Coastline</div>
+                    <div class="map-stat">Win rate 54%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap divider">
+        <div class="tag reveal">Funcionalidades</div>
+        <h2 class="reveal">Tudo que você<br>precisa saber</h2>
+        <div class="feat-grid">
+            <div class="feat-item reveal">
+                <div class="feat-num">01</div>
+                <div class="feat-title">Stats de Carreira</div>
+                <p class="feat-desc">Rank, K/D, win rate, headshot % e evolução por temporada.</p>
+            </div>
+            <div class="feat-item reveal">
+                <div class="feat-num">02</div>
+                <div class="feat-title">Por Operador</div>
+                <p class="feat-desc">Kills, mortes, win rate e tempo de uso de cada operador.</p>
+            </div>
+            <div class="feat-item reveal">
+                <div class="feat-num">03</div>
+                <div class="feat-title">Histórico de Partidas</div>
+                <p class="feat-desc">Mapa, resultado, kills, operador e score de cada partida.</p>
+            </div>
+            <div class="feat-item reveal">
+                <div class="feat-num">04</div>
+                <div class="feat-title">Multiplataforma</div>
+                <p class="feat-desc">PC, PlayStation e Xbox. Qualquer jogador, qualquer plataforma.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="plats reveal">
+        <div class="plat">
+            <div class="dot"></div>PC · Uplay
+        </div>
+        <div class="plat">
+            <div class="dot"></div>PlayStation Network
+        </div>
+        <div class="plat">
+            <div class="dot"></div>Xbox Live
+        </div>
+    </div>
+
+    <footer>
+        <div class="flogo">R6<span>Career</span></div>
+        <p>Não afiliado à Ubisoft Entertainment.</p>
+        <p>© 2026 Gabriel Teramae Chan</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
