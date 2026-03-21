@@ -1,0 +1,228 @@
+.nav-active {
+    color: var(--white) !important;
+}
+
+.ops-page-header {
+    padding-top: 80px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+}
+
+.ops-page-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 48px 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.ops-page-header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+
+.ops-page-desc {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+.ops-filters {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 60px;
+    color: var(--gray);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    color: var(--white);
+    border-color: rgba(240, 237, 230, 0.2);
+}
+
+.filter-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #0C0C0C;
+    font-weight: 500;
+}
+
+.ops-page-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 48px 100px;
+}
+
+.ops-section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 20px;
+    margin-top: 48px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.ops-section-label:first-child {
+    margin-top: 0;
+}
+
+.ops-full-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.op-card-full {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.op-card-full:hover {
+    border-color: rgba(201, 169, 110, 0.25);
+    transform: translateY(-3px);
+}
+
+.ocf-bg {
+    position: relative;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.op-jager-bg {
+    background: linear-gradient(160deg, #2a2106 0%, #1a1400 100%);
+}
+
+.op-ash-bg {
+    background: linear-gradient(160deg, #3d1e00 0%, #2a1200 100%);
+}
+
+.op-cav-bg {
+    background: linear-gradient(160deg, #0d2a0d 0%, #061406 100%);
+}
+
+.op-hibana-bg {
+    background: linear-gradient(160deg, #2a0808 0%, #1a0000 100%);
+}
+
+.op-generic-ataque {
+    background: linear-gradient(160deg, #1a1a2e 0%, #0d0d1a 100%);
+}
+
+.op-generic-defesa {
+    background: linear-gradient(160deg, #1a2a1a 0%, #0d1a0d 100%);
+}
+
+.ocf-bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    filter: brightness(0.75) saturate(0.85);
+    transition: filter 0.3s, transform 0.4s;
+}
+
+.op-card-full:hover .ocf-bg img {
+    filter: brightness(0.9) saturate(1);
+    transform: scale(1.04);
+}
+
+.ocf-initial {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    letter-spacing: 0.05em;
+    color: rgba(240, 237, 230, 0.08);
+    user-select: none;
+    position: relative;
+    z-index: 1;
+}
+
+.ocf-info {
+    padding: 20px 20px 24px;
+    flex: 1;
+}
+
+.ocf-role {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+    margin-bottom: 6px;
+}
+
+.ocf-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+}
+
+.ocf-origin {
+    font-size: 12px;
+    color: var(--gray);
+    margin-bottom: 12px;
+}
+
+.ocf-ability {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201, 169, 110, 0.08);
+    border: 1px solid rgba(201, 169, 110, 0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+}
+
+.ocf-desc {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--gray);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.on {
+    opacity: 1;
+    transform: none;
+}

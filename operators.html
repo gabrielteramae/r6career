@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operadores · R6Career</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="operators.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">R6<span>Career</span></a>
+        <ul>
+            <li><a href="index.html">Buscar</a></li>
+            <li><a href="operators.html" class="nav-active">Operadores</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+        </ul>
+    </nav>
+
+    <div class="ops-page-header">
+        <div class="ops-page-inner">
+            <div>
+                <div class="tag">Rainbow Six Siege</div>
+                <h1>Operadores</h1>
+                <p class="ops-page-desc">Todos os operadores com habilidades, origem e função.</p>
+            </div>
+            <div class="ops-filters">
+                <button class="filter-btn active" onclick="filtrar('todos', this)">Todos</button>
+                <button class="filter-btn" onclick="filtrar('ataque', this)">Ataque</button>
+                <button class="filter-btn" onclick="filtrar('defesa', this)">Defesa</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="ops-page-wrap">
+
+        <div class="ops-section-label reveal" id="label-ataque">Ataque</div>
+        <div class="ops-full-grid" id="grid-ataque">
+
+            <div class="op-card-full ataque reveal">
+                <div class="ocf-bg op-ash-bg">
+                    <img src="images/imagens/imagens.png/ash.png" alt="Ash" />
+                    <div class="ocf-initial">ASH</div>
+                </div>
+                <div class="ocf-info">
+                    <div class="ocf-role">Ataque</div>
+                    <div class="ocf-name">Ash</div>
+                    <div class="ocf-origin">🇺🇸 EUA</div>
+                    <div class="ocf-ability">M120 CREM</div>
+                    <div class="ocf-desc">Destrói reforços e dispositivos eletrônicos à distância com seu lançador de
+                        carga explosiva.</div>
+                </div>
+            </div>
+
+            <div class="op-card-full ataque reveal">
+                <div class="ocf-bg op-hibana-bg">
+                    <img src="images/imagens/imagens.png/hibana.png" alt="Hibana" />
+                    <div class="ocf-initial">HIB</div>
+                </div>
+                <div class="ocf-info">
+                    <div class="ocf-role">Ataque</div>
+                    <div class="ocf-name">Hibana</div>
+                    <div class="ocf-origin">🇯🇵 Japão</div>
+                    <div class="ocf-ability">X-KAIROS</div>
+                    <div class="ocf-desc">Dispara pellets explosivos que destroem reforços à distância sem exposição
+                        direta.</div>
+                </div>
+            </div>
+
+            <div class="op-card-full ataque reveal">
+                <div class="ocf-bg op-generic-ataque">
+                    <div class="ocf-initial">TH</div>
+                </div>
+                <div class="ocf-info">
+                    <div class="ocf-role">Ataque</div>
+                    <div class="ocf-name">Thermite</div>
+                    <div class="ocf-origin">🇺🇸 EUA</div>
+                    <div class="ocf-ability">Exothermic</div>
+                    <div class="ocf-desc">Usa cargas exotérmicas para brechar reforços que nenhum outro operador
+                        consegue destruir.</div>
+                </div>
+            </div>
+
+            <div class="op-card-full ataque reveal">
+                <div class="ocf-bg op-generic-ataque">
+                    <div class="ocf-initial">TW</div>
+                </div>
+                <div class="ocf-info">
+                    <div class="ocf-role">Ataque</div>
+                    <div class="ocf-name">Twitch</div>
+                    <div class="ocf-origin">🇫🇷 França</div>
+                    <div class="ocf-ability">Shock Drone</div>
+                    <div class="ocf-desc">Usa um drone elétrico para destruir dispositivos eletrônicos dos defensores
+                        antes do assault.</div>
+                </div>
+            </div>
+
+            <div class="op-card-full ataque reveal">
+                <div class="ocf-bg op-generic-ataque">
+                    <div class="ocf-initial">THC</div>
+                </div>
+                <div class="ocf-info">
+                    <div class="ocf-role">Ataque</div>
+                    <div class="ocf-name">Thatcher</div>
+                    <div class="ocf-origin">🇬🇧 Reino Unido</div>
+                    <div class="ocf-ability">EMP Grenade</div>
+                    <div class="ocf-desc">Destrói dispositivos eletrônicos dos defensores com granadas EMP, abrindo
+                        caminho para a equipe.</div>
+                </div>
+            </div>
+
+            <div class="op-card-full ataque reveal">
+                <div class="ocf-bg op-generic-ataque">
+                    <div class="ocf-initial">LN</div>
+                </div>
+                <div class="ocf-info">
+                    <div class="ocf-role">Ataque</div>
+                    <div class="ocf-name">Lion</div>
+                    <div class="ocf-origin">🇫🇷 França</div>
+                    <div class="ocf-ability">EE-ONE-D</div>
+                    <div class="ocf-desc">Escaneia o mapa inteiro revelando qualquer defensor que se mova durante a
+                        varredura.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ops-section-label reveal" id="label-defesa">Defesa</div>
+        <div class="ops-full-grid" id="grid-defesa">
+
+            <div class="op-card-full defesa reveal">
+                <div class="ocf-bg op-jager-bg">
+                    <img src="images/imagens/imagens.png/jager.png" alt="Jäger" />
+                    <div class="ocf-initial">JÄG</div>
+                </div>
+                <div class="ocf-info">
+                    <div class="ocf-role">Defesa</div>
+                    <div class="ocf-name">Jäger</div>
+                    <div class="ocf-origin">🇩🇪 Alemanha</div>
+                    <div class="ocf-ability">ADS</div>
+                    <div class="ocf-desc">Instala sistemas de defesa ativa que destroem granadas inimigas
+                        automaticamente no ar.</div>
+                </div>
+            </div>
+
+            <div class="op-card-full defesa reveal">
+                <div class="ocf-bg op-cav-bg">
+                    <img src="images/imagens/imagens.png/caveira.png" alt="Caveira" />
+                    <div class="ocf-initial">CAV</div>
+                </div>
+                <div class="ocf-info">
+                    <div class="ocf-role">Defesa</div>
+                    <div class="ocf-name">Caveira</div>
+                    <div class="ocf-origin">🇧🇷 Brasil</div>
+                    <div class="ocf-ability">Interrogation</div>
+                    <div class="ocf-desc">Interroga inimigos derrubados para revelar a posição de todos os atacantes no
+                        mapa.</div>
+                </div>
+            </div>
+
+            <div class="op-card-full defesa reveal">
+                <div class="ocf-bg op-generic-defesa">
+                    <div class="ocf-initial">RK</div>
+                </div>
+                <div class="ocf-info">
+                    <div class="ocf-role">Defesa</div>
+                    <div class="ocf-name">Rook</div>
+                    <div class="ocf-origin">🇫🇷 França</div>
+                    <div class="ocf-ability">Armor Pack</div>
+                    <div class="ocf-desc">Distribui pacotes de armadura para toda a equipe no início da rodada de
+                        defesa.</div>
+                </div>
+            </div>
+
+            <div class="op-card-full defesa reveal">
+                <div class="ocf-bg op-generic-defesa">
+                    <div class="ocf-initial">BNK</div>
+                </div>
+                <div class="ocf-info">
+                    <div class="ocf-role">Defesa</div>
+                    <div class="ocf-name">Bandit</div>
+                    <div class="ocf-origin">🇩🇪 Alemanha</div>
+                    <div class="ocf-ability">Shock Wire</div>
+                    <div class="ocf-desc">Eletrifica arame farpado e reforços para destruir drones e eliminar atacantes
+                        que tocarem.</div>
+                </div>
+            </div>
+
+            <div class="op-card-full defesa reveal">
+                <div class="ocf-bg op-generic-defesa">
+                    <div class="ocf-initial">VLK</div>
+                </div>
+                <div class="ocf-info">
+                    <div class="ocf-role">Defesa</div>
+                    <div class="ocf-name">Valkyrie</div>
+                    <div class="ocf-origin">🇺🇸 EUA</div>
+                    <div class="ocf-ability">Black Eye</div>
+                    <div class="ocf-desc">Instala câmeras ocultas extras para dar visão adicional à equipe defensora.
+                    </div>
+                </div>
+            </div>
+
+            <div class="op-card-full defesa reveal">
+                <div class="ocf-bg op-generic-defesa">
+                    <div class="ocf-initial">ECO</div>
+                </div>
+                <div class="ocf-info">
+                    <div class="ocf-role">Defesa</div>
+                    <div class="ocf-name">Echo</div>
+                    <div class="ocf-origin">🇯🇵 Japão</div>
+                    <div class="ocf-ability">Yokai</div>
+                    <div class="ocf-desc">Usa um drone voador invisível que atordoa atacantes com pulsos de ultrassom.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="flogo">R6<span>Career</span></div>
+        <p>Não afiliado à Ubisoft Entertainment.</p>
+        <p>© 2026 Gabriel Teramae Chan</p>
+    </footer>
+
+    <script src="operators.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
