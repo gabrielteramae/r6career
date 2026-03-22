@@ -148,6 +148,38 @@
     background: linear-gradient(160deg, #1a2a1a 0%, #0d1a0d 100%);
 }
 
+.op-thermite-bg {
+    background: linear-gradient(160deg, #3d1a00 0%, #2a0f00 100%);
+}
+
+.op-twitch-bg {
+    background: linear-gradient(160deg, #001a3d 0%, #000f2a 100%);
+}
+
+.op-thatcher-bg {
+    background: linear-gradient(160deg, #2a1f2e 0%, #1a1220 100%);
+}
+
+.op-lion-bg {
+    background: linear-gradient(160deg, #2a2000 0%, #1a1400 100%);
+}
+
+.op-rook-bg {
+    background: linear-gradient(160deg, #001a2a 0%, #000f1a 100%);
+}
+
+.op-bandit-bg {
+    background: linear-gradient(160deg, #2a2000 0%, #1a1400 100%);
+}
+
+.op-valkyrie-bg {
+    background: linear-gradient(160deg, #2a2106 0%, #1a1400 100%);
+}
+
+.op-echo-bg {
+    background: linear-gradient(160deg, #2a0000 0%, #1a0000 100%);
+}
+
 .ocf-bg img {
     position: absolute;
     inset: 0;
@@ -172,6 +204,7 @@
     user-select: none;
     position: relative;
     z-index: 1;
+    display: none;
 }
 
 .ocf-info {

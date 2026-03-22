@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaderboard · R6Career</title>
+    <meta name="description" content="Ranking dos melhores jogadores do Rainbow Six Siege por MMR, K/D e win rate." />
+    <meta property="og:title" content="Leaderboard · R6Career" />
+    <meta property="og:description" content="Ranking dos melhores jogadores do Rainbow Six Siege." />
+    <meta name="theme-color" content="#0C0C0C" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="leaderboard.css" />
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">R6<span>Career</span></a>
+        <ul>
+            <li><a href="index.html">Buscar</a></li>
+            <li><a href="operators.html">Operadores</a></li>
+            <li><a href="leaderboard.html" class="nav-active">Leaderboard</a></li>
+        </ul>
+    </nav>
+
+    <div class="lb-header">
+        <div class="lb-header-inner">
+            <div>
+                <div class="tag">Rainbow Six Siege</div>
+                <h1>Leaderboard</h1>
+                <p class="lb-desc">Os melhores jogadores da temporada atual rankeados por MMR.</p>
+            </div>
+            <div class="lb-filters">
+                <button class="filter-btn active" onclick="filtrar('mmr', this)">MMR</button>
+                <button class="filter-btn" onclick="filtrar('kd', this)">K/D</button>
+                <button class="filter-btn" onclick="filtrar('winrate', this)">Win Rate</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="lb-wrap">
+
+        <div class="lb-podium reveal">
+            <div class="podium-card second">
+                <div class="podium-pos">2</div>
+                <div class="podium-avatar">MK</div>
+                <div class="podium-name">MaestroKing</div>
+                <div class="podium-plat">PC</div>
+                <div class="podium-rank">Campeão</div>
+                <div class="podium-mmr">5.840 MMR</div>
+            </div>
+            <div class="podium-card first">
+                <div class="podium-crown">♛</div>
+                <div class="podium-pos">1</div>
+                <div class="podium-avatar">NX</div>
+                <div class="podium-name">NexusR6</div>
+                <div class="podium-plat">PC</div>
+                <div class="podium-rank">Campeão</div>
+                <div class="podium-mmr">6.120 MMR</div>
+            </div>
+            <div class="podium-card third">
+                <div class="podium-pos">3</div>
+                <div class="podium-avatar">SB</div>
+                <div class="podium-name">SilentBreach</div>
+                <div class="podium-plat">PC</div>
+                <div class="podium-rank">Campeão</div>
+                <div class="podium-mmr">5.720 MMR</div>
+            </div>
+        </div>
+
+        <div class="lb-table reveal">
+
+            <div class="lb-table-header">
+                <span class="col-pos">#</span>
+                <span class="col-player">Jogador</span>
+                <span class="col-rank">Rank</span>
+                <span class="col-mmr">MMR</span>
+                <span class="col-kd">K/D</span>
+                <span class="col-win">Win Rate</span>
+                <span class="col-plat">Plat.</span>
+            </div>
+
+            <div class="lb-row" onclick="window.location='player.html'">
+                <span class="col-pos top3">4</span>
+                <div class="col-player">
+                    <div class="lb-avatar">GT</div>
+                    <div>
+                        <div class="lb-name">GabrielTeramae</div>
+                        <div class="lb-country">🇧🇷 Brasil</div>
+                    </div>
+                </div>
+                <span class="col-rank gold">Diamante I</span>
+                <span class="col-mmr">5.210 MMR</span>
+                <span class="col-kd">2.84</span>
+                <span class="col-win">71%</span>
+                <span class="col-plat">PC</span>
+            </div>
+
+            <div class="lb-row">
+                <span class="col-pos">5</span>
+                <div class="col-player">
+                    <div class="lb-avatar">PR</div>
+                    <div>
+                        <div class="lb-name">ProPlayer_BR</div>
+                        <div class="lb-country">🇧🇷 Brasil</div>
+                    </div>
+                </div>
+                <span class="col-rank gold">Diamante II</span>
+                <span class="col-mmr">5.080 MMR</span>
+                <span class="col-kd">2.61</span>
+                <span class="col-win">68%</span>
+                <span class="col-plat">PC</span>
+            </div>
+
+            <div class="lb-row">
+                <span class="col-pos">6</span>
+                <div class="col-player">
+                    <div class="lb-avatar">AX</div>
+                    <div>
+                        <div class="lb-name">AxelStrike</div>
+                        <div class="lb-country">🇦🇷 Argentina</div>
+                    </div>
+                </div>
+                <span class="col-rank">Diamante II</span>
+                <span class="col-mmr">4.960 MMR</span>
+                <span class="col-kd">2.44</span>
+                <span class="col-win">65%</span>
+                <span class="col-plat">PC</span>
+            </div>
+
+            <div class="lb-row">
+                <span class="col-pos">7</span>
+                <div class="col-player">
+                    <div class="lb-avatar">VX</div>
+                    <div>
+                        <div class="lb-name">VortexR6</div>
+                        <div class="lb-country">🇨🇱 Chile</div>
+                    </div>
+                </div>
+                <span class="col-rank">Diamante III</span>
+                <span class="col-mmr">4.820 MMR</span>
+                <span class="col-kd">2.31</span>
+                <span class="col-win">63%</span>
+                <span class="col-plat">PC</span>
+            </div>
+
+            <div class="lb-row">
+                <span class="col-pos">8</span>
+                <div class="col-player">
+                    <div class="lb-avatar">SN</div>
+                    <div>
+                        <div class="lb-name">SniperKing99</div>
+                        <div class="lb-country">🇧🇷 Brasil</div>
+                    </div>
+                </div>
+                <span class="col-rank">Diamante III</span>
+                <span class="col-mmr">4.710 MMR</span>
+                <span class="col-kd">2.18</span>
+                <span class="col-win">61%</span>
+                <span class="col-plat">PlayStation</span>
+            </div>
+
+            <div class="lb-row">
+                <span class="col-pos">9</span>
+                <div class="col-player">
+                    <div class="lb-avatar">PH</div>
+                    <div>
+                        <div class="lb-name">PhantomSix</div>
+                        <div class="lb-country">🇲🇽 México</div>
+                    </div>
+                </div>
+                <span class="col-rank">Diamante III</span>
+                <span class="col-mmr">4.650 MMR</span>
+                <span class="col-kd">2.05</span>
+                <span class="col-win">59%</span>
+                <span class="col-plat">PC</span>
+            </div>
+
+            <div class="lb-row">
+                <span class="col-pos">10</span>
+                <div class="col-player">
+                    <div class="lb-avatar">CR</div>
+                    <div>
+                        <div class="lb-name">CrimsonAce</div>
+                        <div class="lb-country">🇧🇷 Brasil</div>
+                    </div>
+                </div>
+                <span class="col-rank">Diamante IV</span>
+                <span class="col-mmr">4.580 MMR</span>
+                <span class="col-kd">1.98</span>
+                <span class="col-win">58%</span>
+                <span class="col-plat">Xbox</span>
+            </div>
+
+            <div class="lb-row">
+                <span class="col-pos">11</span>
+                <div class="col-player">
+                    <div class="lb-avatar">ZR</div>
+                    <div>
+                        <div class="lb-name">ZeroRecoil</div>
+                        <div class="lb-country">🇨🇴 Colômbia</div>
+                    </div>
+                </div>
+                <span class="col-rank">Diamante IV</span>
+                <span class="col-mmr">4.490 MMR</span>
+                <span class="col-kd">1.92</span>
+                <span class="col-win">57%</span>
+                <span class="col-plat">PC</span>
+            </div>
+
+            <div class="lb-row">
+                <span class="col-pos">12</span>
+                <div class="col-player">
+                    <div class="lb-avatar">DK</div>
+                    <div>
+                        <div class="lb-name">DarkKnight_R6</div>
+                        <div class="lb-country">🇧🇷 Brasil</div>
+                    </div>
+                </div>
+                <span class="col-rank">Diamante IV</span>
+                <span class="col-mmr">4.420 MMR</span>
+                <span class="col-kd">1.87</span>
+                <span class="col-win">56%</span>
+                <span class="col-plat">PC</span>
+            </div>
+
+            <div class="lb-row">
+                <span class="col-pos">13</span>
+                <div class="col-player">
+                    <div class="lb-avatar">FS</div>
+                    <div>
+                        <div class="lb-name">FrostSniper</div>
+                        <div class="lb-country">🇵🇪 Peru</div>
+                    </div>
+                </div>
+                <span class="col-rank">Diamante IV</span>
+                <span class="col-mmr">4.380 MMR</span>
+                <span class="col-kd">1.81</span>
+                <span class="col-win">55%</span>
+                <span class="col-plat">PlayStation</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="flogo">R6<span>Career</span></div>
+        <p>Não afiliado à Ubisoft Entertainment.</p>
+        <p>© 2026 Gabriel Teramae Chan</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="leaderboard.js"></script>
+
+</body>
+
+</html>
