@@ -1,0 +1,36 @@
+{
+  "name": "r6-career",
+  "version": "1.0.0",
+  "description": "> R6Career é um projeto que demonstra seu painel de estatísticas do jogo Rainbow Six Siege.",
+  "main": "404.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielteramae/r6career.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gabrielteramae/r6career/issues"
+  },
+  "homepage": "https://github.com/gabrielteramae/r6career#readme",
+  "dependencies": {
+    "axios": "^1.13.6",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "r6api.js": "^4.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
