@@ -151,6 +151,7 @@ function renderUbisoftLogin() {
                     password: form.password.value,
                 }),
             });
+            form.password.value = "";
             const data = await response.json().catch(() => ({}));
             if (!response.ok) {
                 renderStatus(data.error || "Não foi possível entrar na Ubisoft.");

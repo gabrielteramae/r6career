@@ -1,47 +1,59 @@
 const path = require("path");
 const express = require("express");
-const cors = require("cors");
 require("dotenv").config();
 
-const { getPlayer } = require("./lib/ubisoft");
+const { getPlayer, connectAccount, connected } = require("./lib/ubisoft");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const loginAttempts = new Map();
 
-app.use(cors());
-app.use(express.json());
+app.disable("x-powered-by");
+app.use((req, res, next) => {
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("Referrer-Policy", "no-referrer");
+    res.setHeader("X-Frame-Options", "DENY");
+    res.setHeader("Cache-Control", "no-store");
+    next();
+});
+app.use(express.json({ limit: "1kb" }));
+
+function loginAllowed(ip) {
+    const now = Date.now();
+    const recent = (loginAttempts.get(ip) || []).filter((time) => now - time < 15 * 60 * 1000);
+    if (recent.length >= 5) {
+        loginAttempts.set(ip, recent);
+        return false;
+    }
+    recent.push(now);
+    loginAttempts.set(ip, recent);
+    return true;
+}
 
 app.get("/api/health", (req, res) => {
-    res.json({
-        ok: true,
-        source: process.env.UBI_EMAIL && process.env.UBI_PASSWORD ? "ubisoft" : "tracker",
-    });
+    res.json({ ok: true, connected: connected() });
 });
 
 app.post("/api/ubisoft", async (req, res) => {
     const email = String(req.body?.email || "").trim();
     const password = String(req.body?.password || "");
-    if (!email || !password || email.length > 200 || password.length > 200) {
+    if (req.body) req.body.password = "";
+
+    const ip = req.socket.remoteAddress || "local";
+    if (!loginAllowed(ip)) {
+        return res.status(429).json({ error: "Muitas tentativas. Espere alguns minutos." });
+    }
+    if (!email || !password || email.length > 200 || password.length > 128 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         return res.status(400).json({ error: "Informe o e-mail e a senha da Ubisoft." });
     }
 
-    process.env.UBI_EMAIL = email;
-    process.env.UBI_PASSWORD = password;
-
     try {
-        const R6API = require("r6api.js").default;
-        const api = new R6API({ email, password });
-        await api.getTicket();
+        await connectAccount(email, password);
         res.json({ ok: true });
-    } catch (error) {
-        delete process.env.UBI_EMAIL;
-        delete process.env.UBI_PASSWORD;
-        const message = String(error.message || "");
-        const needsCode = /2fa|two-factor|two factor|mfa|code/i.test(message);
+    } catch {
+        console.error("Login Ubisoft recusado");
         res.status(401).json({
-            error: needsCode
-                ? "Essa conta pede um código. Use uma conta Ubisoft sem verificação em duas etapas."
-                : "Não foi possível entrar na Ubisoft. Confira o e-mail e a senha.",
+            error: "Não foi possível entrar na Ubisoft. Confira o e-mail e a senha. A conta não pode pedir código.",
         });
     }
 });
@@ -66,7 +78,7 @@ app.get("/player/:platform/:username", async (req, res) => {
     res.json(result.player);
 });
 
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname), { dotfiles: "deny" }));
 
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`R6Career em http://0.0.0.0:${PORT}`);
