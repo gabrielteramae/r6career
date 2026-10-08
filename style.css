@@ -642,6 +642,41 @@ h1 {
     font-size: 13px;
 }
 
+.ubi-login {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 420px;
+}
+
+.ubi-login input,
+.ubi-login button {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+
+.ubi-login input {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(240, 237, 230, 0.12);
+    color: var(--white);
+    outline: none;
+}
+
+.ubi-login button {
+    background: var(--gold);
+    color: #0c0c0c;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.ubi-login button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
 .result-status,
 .recent-empty {
     color: var(--gray);
