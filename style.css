@@ -600,3 +600,64 @@ h1 {
 .search-box {
     animation: up 0.7s ease 0.45s both;
 }
+.search-box button:disabled {
+    opacity: 0.55;
+    cursor: wait;
+}
+
+.player-result {
+    padding-top: 36px;
+    padding-bottom: 20px;
+}
+
+.player-result h2 {
+    font-size: clamp(36px, 4vw, 52px);
+    margin-bottom: 6px;
+}
+
+.result-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.result-head {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.result-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: rgba(201, 169, 110, 0.08);
+}
+
+.result-head p {
+    color: var(--gray);
+    font-size: 13px;
+}
+
+.result-status,
+.recent-empty {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.players-grid .player-card {
+    width: 100%;
+    text-align: left;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    .players-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -33,54 +33,16 @@
                     <option value="psn">PlayStation</option>
                     <option value="xbl">Xbox</option>
                 </select>
-                <button onclick="buscar()">Buscar</button>
+                <button id="searchButton" onclick="buscar()">Buscar</button>
             </div>
         </div>
     </div>
 
+    <div id="player-result" class="wrap player-result" hidden></div>
+
     <div class="wrap">
         <div class="tag reveal">Buscas recentes</div>
-        <div class="players-grid">
-            <a href="#" class="player-card reveal">
-                <div class="card-top">
-                    <div class="avatar">GTC</div>
-                    <div class="rank-tag">Diamante IV</div>
-                </div>
-                <div class="card-name">GabrielTeramae</div>
-                <div class="card-plat">PC · Uplay</div>
-                <div class="card-stats">
-                    <div><span class="stat-val">1.84</span><span class="stat-key">K/D</span></div>
-                    <div><span class="stat-val">62%</span><span class="stat-key">Win</span></div>
-                    <div><span class="stat-val">48%</span><span class="stat-key">HS</span></div>
-                </div>
-            </a>
-            <a href="#" class="player-card reveal">
-                <div class="card-top">
-                    <div class="avatar">PRO</div>
-                    <div class="rank-tag">Platina I</div>
-                </div>
-                <div class="card-name">ProPlayer_BR</div>
-                <div class="card-plat">PC · Uplay</div>
-                <div class="card-stats">
-                    <div><span class="stat-val">3.21</span><span class="stat-key">K/D</span></div>
-                    <div><span class="stat-val">74%</span><span class="stat-key">Win</span></div>
-                    <div><span class="stat-val">61%</span><span class="stat-key">HS</span></div>
-                </div>
-            </a>
-            <a href="#" class="player-card reveal">
-                <div class="card-top">
-                    <div class="avatar">SNP</div>
-                    <div class="rank-tag">Platina II</div>
-                </div>
-                <div class="card-name">SniperKing99</div>
-                <div class="card-plat">PlayStation</div>
-                <div class="card-stats">
-                    <div><span class="stat-val">1.42</span><span class="stat-key">K/D</span></div>
-                    <div><span class="stat-val">55%</span><span class="stat-key">Win</span></div>
-                    <div><span class="stat-val">52%</span><span class="stat-key">HS</span></div>
-                </div>
-            </a>
-        </div>
+        <div class="players-grid" id="recent-grid"></div>
     </div>
 
     <div class="wrap divider">

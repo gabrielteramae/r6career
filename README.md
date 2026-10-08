@@ -23,6 +23,14 @@
 
 ## Como Rodar
 
+```bash
+npm install
+cp .env.example .env
+npm start
+```
+
+Abra `http://localhost:3000`. A busca usa a API da Ubisoft quando `UBI_EMAIL` e `UBI_PASSWORD` estão no `.env`. Sem isso, o servidor tenta a fonte pública e avisa se ela estiver bloqueada.
+
 ### Pré-requisitos
 
 - Node.js 18+

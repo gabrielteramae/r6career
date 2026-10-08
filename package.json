@@ -2,7 +2,7 @@
   "name": "r6-career",
   "version": "1.0.0",
   "description": "> R6Career é um projeto que demonstra seu painel de estatísticas do jogo Rainbow Six Siege.",
-  "main": "404.js",
+  "main": "server.js",
   "directories": {
     "lib": "lib"
   },
