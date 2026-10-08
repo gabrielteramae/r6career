@@ -642,6 +642,30 @@ h1 {
     font-size: 13px;
 }
 
+.mode-list,
+.op-list {
+    margin-top: 16px;
+    color: var(--gray);
+    font-size: 13px;
+}
+
+.mode-list p,
+.op-list p {
+    margin: 6px 0;
+}
+
+.logout-btn {
+    margin-top: 16px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--gray);
+    border-radius: 999px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+}
+
 .ubi-login {
     display: flex;
     flex-direction: column;

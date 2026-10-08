@@ -1,12 +1,16 @@
+const crypto = require("crypto");
 const path = require("path");
 const express = require("express");
 require("dotenv").config();
 
-const { getPlayer, connectAccount, connected } = require("./lib/ubisoft");
+const { getPlayer, connectAccount, disconnect } = require("./lib/ubisoft");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const COOKIE = "r6session";
+const SESSION_MS = 60 * 60 * 1000;
 const loginAttempts = new Map();
+let browserSession = null;
 
 app.disable("x-powered-by");
 app.use((req, res, next) => {
@@ -14,6 +18,10 @@ app.use((req, res, next) => {
     res.setHeader("Referrer-Policy", "no-referrer");
     res.setHeader("X-Frame-Options", "DENY");
     res.setHeader("Cache-Control", "no-store");
+    res.setHeader(
+        "Content-Security-Policy",
+        "default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    );
     next();
 });
 app.use(express.json({ limit: "1kb" }));
@@ -30,8 +38,42 @@ function loginAllowed(ip) {
     return true;
 }
 
+function readCookie(req) {
+    const header = req.headers.cookie || "";
+    const piece = header.split(";").map((part) => part.trim()).find((part) => part.startsWith(`${COOKIE}=`));
+    if (!piece) return "";
+    try {
+        return decodeURIComponent(piece.slice(COOKIE.length + 1));
+    } catch {
+        return "";
+    }
+}
+
+function sessionValid(req) {
+    if (!browserSession || browserSession.expires < Date.now()) return false;
+    const token = readCookie(req);
+    if (!/^[a-f0-9]{64}$/.test(token)) return false;
+    const hash = crypto.createHash("sha256").update(token).digest();
+    return crypto.timingSafeEqual(hash, browserSession.hash);
+}
+
+function startBrowserSession(res) {
+    const token = crypto.randomBytes(32).toString("hex");
+    browserSession = {
+        hash: crypto.createHash("sha256").update(token).digest(),
+        expires: Date.now() + SESSION_MS,
+    };
+    res.setHeader("Set-Cookie", `${COOKIE}=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=3600`);
+}
+
+function endBrowserSession(res) {
+    browserSession = null;
+    disconnect();
+    res.setHeader("Set-Cookie", `${COOKIE}=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0`);
+}
+
 app.get("/api/health", (req, res) => {
-    res.json({ ok: true, connected: connected() });
+    res.json({ ok: true });
 });
 
 app.post("/api/ubisoft", async (req, res) => {
@@ -49,6 +91,7 @@ app.post("/api/ubisoft", async (req, res) => {
 
     try {
         await connectAccount(email, password);
+        startBrowserSession(res);
         res.json({ ok: true });
     } catch {
         console.error("Login Ubisoft recusado");
@@ -58,7 +101,20 @@ app.post("/api/ubisoft", async (req, res) => {
     }
 });
 
+app.post("/api/logout", (req, res) => {
+    if (sessionValid(req)) endBrowserSession(res);
+    else res.setHeader("Set-Cookie", `${COOKIE}=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0`);
+    res.json({ ok: true });
+});
+
 app.get("/player/:platform/:username", async (req, res) => {
+    if (!sessionValid(req)) {
+        return res.status(401).json({
+            code: "needs_ubisoft",
+            error: "Entre com a Ubisoft para consultar.",
+        });
+    }
+
     const { platform, username } = req.params;
     const result = await getPlayer(username, platform);
 

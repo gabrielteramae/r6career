@@ -107,6 +107,9 @@ function renderPlayer(player) {
         ["Kills", statValue(player.stats.kills)],
         ["Vitórias", statValue(player.stats.wins)],
         ["Partidas", statValue(player.stats.matches)],
+        ["Assist.", statValue(player.stats.assists)],
+        ["Derrotas", statValue(player.stats.losses)],
+        ["Horas", statValue(player.stats.playtime ? Math.round(player.stats.playtime / 3600) : null)],
     ].forEach(([key, val]) => {
         const cell = document.createElement("div");
         const number = document.createElement("span");
@@ -120,6 +123,40 @@ function renderPlayer(player) {
     });
 
     card.append(head, stats);
+
+    if (player.ranked || player.casual) {
+        const modes = document.createElement("div");
+        modes.className = "mode-list";
+        [["Ranqueada", player.ranked], ["Casual", player.casual]].forEach(([label, mode]) => {
+            if (!mode) return;
+            const row = document.createElement("p");
+            row.textContent = `${label}: K/D ${statValue(mode.kd)} · Win ${statValue(mode.winRate)} · ${statValue(mode.matches)} partidas`;
+            modes.appendChild(row);
+        });
+        card.appendChild(modes);
+    }
+
+    if (player.operators && player.operators.length) {
+        const list = document.createElement("div");
+        list.className = "op-list";
+        player.operators.forEach((operator) => {
+            const row = document.createElement("p");
+            row.textContent = `${operator.name} · ${operator.role || ""} · K/D ${statValue(operator.kd)} · ${statValue(operator.matches)} partidas`;
+            list.appendChild(row);
+        });
+        card.appendChild(list);
+    }
+
+    const logout = document.createElement("button");
+    logout.type = "button";
+    logout.className = "logout-btn";
+    logout.textContent = "Sair da Ubisoft";
+    logout.addEventListener("click", async () => {
+        await fetch("/api/logout", { method: "POST" });
+        renderStatus("Sessão encerrada.");
+    });
+    card.appendChild(logout);
+
     box.append(tag, card);
     box.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -131,8 +168,9 @@ function renderUbisoftLogin() {
 
     const form = document.createElement("form");
     form.className = "ubi-login";
+    form.autocomplete = "off";
     form.innerHTML = `
-        <p class="result-status">A consulta pública está bloqueada. Entre com uma conta Ubisoft para buscar o jogador de verdade. Pode ser uma conta secundária, sem verificação em duas etapas. A senha fica só nesta sessão.</p>
+        <p class="result-status">A consulta é feita na Ubisoft. A senha não fica no navegador nem no GitHub. A sessão expira em 1 hora e só este navegador pode usá-la.</p>
         <input type="email" name="email" placeholder="E-mail Ubisoft" autocomplete="username" required />
         <input type="password" name="password" placeholder="Senha" autocomplete="current-password" required />
         <button type="submit">Conectar e buscar</button>
@@ -214,6 +252,8 @@ async function buscar() {
 }
 
 const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+if (searchButton) searchButton.addEventListener("click", buscar);
 if (searchInput) {
     searchInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") buscar();
