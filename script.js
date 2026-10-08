@@ -124,6 +124,46 @@ function renderPlayer(player) {
     box.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+function renderUbisoftLogin() {
+    const box = document.getElementById("player-result");
+    box.hidden = false;
+    box.innerHTML = "";
+
+    const form = document.createElement("form");
+    form.className = "ubi-login";
+    form.innerHTML = `
+        <p class="result-status">A consulta pública está bloqueada. Entre com uma conta Ubisoft para buscar o jogador de verdade. Pode ser uma conta secundária, sem verificação em duas etapas. A senha fica só nesta sessão.</p>
+        <input type="email" name="email" placeholder="E-mail Ubisoft" autocomplete="username" required />
+        <input type="password" name="password" placeholder="Senha" autocomplete="current-password" required />
+        <button type="submit">Conectar e buscar</button>
+    `;
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const button = form.querySelector("button");
+        button.disabled = true;
+        button.textContent = "Conectando...";
+        try {
+            const response = await fetch("/api/ubisoft", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: form.email.value.trim(),
+                    password: form.password.value,
+                }),
+            });
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok) {
+                renderStatus(data.error || "Não foi possível entrar na Ubisoft.");
+                return;
+            }
+            buscar();
+        } catch {
+            renderStatus("O servidor não respondeu.");
+        }
+    });
+    box.appendChild(form);
+}
+
 function renderStatus(message) {
     const box = document.getElementById("player-result");
     box.hidden = false;
@@ -150,6 +190,10 @@ async function buscar() {
     try {
         const response = await fetch("/player/" + encodeURIComponent(platform.value) + "/" + encodeURIComponent(username));
         const data = await response.json().catch(() => ({}));
+        if (data.code === "needs_ubisoft") {
+            renderUbisoftLogin();
+            return;
+        }
         if (!response.ok) {
             renderStatus(data.error || "Não foi possível buscar esse jogador.");
             return;
@@ -161,7 +205,7 @@ async function buscar() {
             rank: data.stats && data.stats.rank,
         });
     } catch {
-        renderStatus("O servidor não respondeu. Rode npm start e abra o site por localhost.");
+        renderStatus("O servidor não respondeu.");
     } finally {
         button.disabled = false;
         button.textContent = "Buscar";
