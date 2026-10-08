@@ -80,7 +80,7 @@ function renderPlayer(player) {
 
     const head = document.createElement("div");
     head.className = "result-head";
-    if (player.avatar) {
+    if (player.avatar && /^https?:\/\//i.test(player.avatar)) {
         const img = document.createElement("img");
         img.src = player.avatar;
         img.alt = "";
